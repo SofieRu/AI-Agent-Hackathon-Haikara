@@ -1,0 +1,54 @@
+# Core Dependencies
+python-dotenv==1.0.0
+
+# Async HTTP and Networking
+aiohttp==3.9.1
+asyncio==3.4.3
+requests==2.31.0
+
+# Optimization and Scientific Computing
+pulp==2.7.0
+numpy==1.24.3
+pandas==2.1.4
+scipy==1.11.4
+
+# AI/ML (Optional - for GPT-4 forecasting)
+openai==1.6.1
+
+# Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# Data Visualization
+plotly==5.18.0
+
+# Cryptography (for Beckn signing)
+cryptography==41.0.7
+
+# Date/Time utilities
+python-dateutil==2.8.2
+
+# UUID generation (usually built-in, but explicit for clarity)
+uuid==1.30
+
+# JSON handling improvements
+ujson==5.9.0
+
+# Logging
+colorlog==6.8.0
+
+# Testing (optional but recommended)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+
+# Code quality (optional but recommended)
+black==23.12.1
+flake8==7.0.0
+mypy==1.8.0
+
+# Documentation (optional)
+sphinx==7.2.6
+
+# Performance monitoring (optional)
+psutil==5.9.6
