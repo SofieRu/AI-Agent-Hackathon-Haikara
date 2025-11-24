@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexible Compute Scheduler - Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-change {
+            color: #27ae60;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        
+        .status-active {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Flexible Compute Scheduler</h1>
+            <p class="subtitle">Digital Energy Grid Optimization Platform</p>
+            <span class="status-badge status-active pulse">● LIVE</span>
+        </header>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Total Cost Saved</div>
+                <div class="metric-value" id="cost-saved">£0</div>
+                <div class="metric-change">↓ 32% reduction</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Carbon Reduced</div>
+                <div class="metric-value" id="carbon-reduced">0 tons</div>
+                <div class="metric-change">↓ 45% reduction</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">P415 Revenue</div>
+                <div class="metric-value" id="p415-revenue">£0</div>
+                <div class="metric-change">↑ New revenue stream</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Jobs Scheduled</div>
+                <div class="metric-value" id="jobs-scheduled">0</div>
+                <div class="metric-change">✓ 99.2% SLA compliance</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="schedule-chart"></div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="carbon-chart"></div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="price-chart"></div>
+        </div>
+        
+        <div class="chart-container">
+            <div id="savings-chart"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Update metrics
+        function updateMetrics() {
+            $.get('/api/metrics', function(data) {
+                $('#cost-saved').text('£' + data.total_cost_saved.toLocaleString());
+                $('#carbon-reduced').text(data.carbon_reduced_tons.toFixed(1) + ' tons');
+                $('#p415-revenue').text('£' + data.p415_revenue.toLocaleString());
+                $('#jobs-scheduled').text(data.jobs_scheduled);
+            });
+        }
+        
+        // Load schedule chart
+        function loadScheduleChart() {
+            $.get('/api/schedule', function(data) {
+                var figure = JSON.parse(data);
+                Plotly.newPlot('schedule-chart', figure.data, figure.layout);
+            });
+        }
+        
+        // Load carbon forecast chart
+        function loadCarbonChart() {
+            $.get('/api/carbon_forecast', function(data) {
+                var figure = JSON.parse(data);
+                Plotly.newPlot('carbon-chart', figure.data, figure.layout);
+            });
+        }
+        
+        // Load price forecast chart
+        function loadPriceChart() {
+            $.get('/api/price_forecast', function(data) {
+                var figure = JSON.parse(data);
+                Plotly.newPlot('price-chart', figure.data, figure.layout);
+            });
+        }
+        
+        // Load savings chart
+        function loadSavingsChart() {
+            $.get('/api/savings', function(data) {
+                var figure = JSON.parse(data);
+                Plotly.newPlot('savings-chart', figure.data, figure.layout);
+            });
+        }
+        
+        // Initial load
+        $(document).ready(function() {
+            updateMetrics();
+            loadScheduleChart();
+            loadCarbonChart();
+            loadPriceChart();
+            loadSavingsChart();
+            
+            // Refresh every 30 seconds
+            setInterval(function() {
+                updateMetrics();
+                loadScheduleChart();
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
