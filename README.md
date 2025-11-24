@@ -32,7 +32,7 @@ Haikara is a multi-agent orchestration system built for the DEG Hackathon. It co
 
 <br>
 
-### How It Works
+## How It Works
 
 The system uses four agents that work together:
 
