@@ -114,18 +114,20 @@ All API calls go through the BAP Sandbox as required by Beckn protocol.
 
 <br>
 
+
 ## Installation & Running
 
 **Install dependencies:**
 ```bash
-pip install ...
+pip install requests python-dotenv pydantic flask flask-cors
 ```
 
 **Run web dashboard:**
 ```bash
 python app.py
 ```
-Then open http://...
+Then open http://localhost:5001
+
 
 <br>
 
