@@ -19,6 +19,7 @@ Rucha Agashe
 Rana Rustamli  
 
 
+<br>
 
 ## Introduction
 
@@ -29,8 +30,9 @@ Haikara is a multi-agent orchestration system built for the DEG Hackathon. It co
 - 20-40% carbon emission reduction (200-500 kg CO2)
 - P415 flexibility revenue generation
 
+<br>
 
-## How It Works
+### How It Works
 
 The system uses four agents that work together:
 
@@ -48,6 +50,7 @@ The **Orchestrator** coordinates these agents through the complete Beckn protoco
 
 All API calls go through the BAP Sandbox as required by Beckn protocol.
 
+<br>
 
 ## Installation & Running
 
@@ -67,6 +70,7 @@ Then open http://...
 python main.py
 ```
 
+<br>
 
 ## Repository Structure
 
