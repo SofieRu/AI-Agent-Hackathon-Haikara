@@ -11,7 +11,7 @@
 
 ## Haikara 
 
-#### Team Members
+### Team Members
 Sofie Rüffer  
 Kamila Bereket  
 Adeline Wong  
