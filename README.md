@@ -25,10 +25,10 @@ Rana Rustamli
 
 Haikara is a multi-agent orchestration system built for the DEG Hackathon. It coordinates four specialized agents to optimize when data center workloads run, scheduling them during times of low energy prices and carbon intensity while participating in P415 flexibility programs.
 
-**Key Results:**
+<!-- **Key Results:**
 - 15-20% cost reduction (£350-400 per cycle)
 - 20-40% carbon emission reduction (200-500 kg CO2)
-- P415 flexibility revenue generation
+- P415 flexibility revenue generation -->
 
 <br>
 
