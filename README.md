@@ -86,3 +86,7 @@ haikara-agent/
 └── templates/
     └── dashboard.html      # Web UI
 ```
+
+<p align="center">
+  <img src="images/DEG_font.png" alt="DEG font" width="300">
+</p>
