@@ -33,6 +33,7 @@ import asyncio
 import logging
 from dateutil import parser
 from datetime import timezone
+from dateutil.parser import isoparse
 
 
 # Basic logging
@@ -115,7 +116,7 @@ def generate_simulated_grid_windows(now: datetime, horizon_hours=24):
     return windows
 
 # populate simulated windows at startup
-SIMULATED_GRID_WINDOWS = generate_simulated_grid_windows(datetime.utcnow())
+SIMULATED_GRID_WINDOWS = generate_simulated_grid_windows(isoparse("2025-11-24T00:00:00Z"), horizon_hours=48)
 
 # --------------------------- Decision / Orchestrator Logic ---------------------------
 
