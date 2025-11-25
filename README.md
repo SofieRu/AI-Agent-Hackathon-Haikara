@@ -57,9 +57,8 @@ All API calls go through the BAP Sandbox as required by Beckn protocol.
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    HAIKARA ORCHESTRATOR                         │
-│                      (orchestrator.py)                          │
 │                                                                 │
-│  Controls the complete optimization cycle and Beckn journey     │
+│   Controls the complete optimization cycle and Beckn journey    │
 └─────────────────────────────────────────────────────────────────┘
                               │
         ┌─────────────────────┼─────────────────────┐
@@ -88,7 +87,6 @@ All API calls go through the BAP Sandbox as required by Beckn protocol.
                               ▼
                    ┌─────────────────────┐
                    │   BECKN API CLIENT  │
-                   │   (beckn_client.py) │
                    │                     │
                    │  Beckn Protocol     │
                    │  Communication      │
